@@ -1,0 +1,4 @@
+- 前端代码：https://github.com/dyedd/light-collector-front-end
+- 更多介绍看前端的哈
+- 不想破坏前端的格局，就在这里谢谢，到后面因为时间的紧张，很多地方直接使用pinia的持久化写了，因此没有配上后端api，因为mysql也没有
+- 待后期有空补全吧
