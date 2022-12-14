@@ -52,12 +52,20 @@ class github {
         "uid": req.cookies['uid']
       }))
       const number = await num;
+      let len = 0
+      if(number.length==0){
+        let [_all, all] = await wrap(categoryController.listAll())
+        const numberALL = await all;
+        len = numberALL[numberALL.length-1]['_id']
+      }else{
+        len = number[number.length-1]['_id']+1
+      }
       // console.log(number);
       let [err, data] = await wrap(categoryController.save({
         name: '未分类',
         repos: starRepos,
         "uid": req.cookies['uid'],
-        cid: number[number.length-1]['_id']+1
+        cid:  len
       }))
       if (err) {
         return {
