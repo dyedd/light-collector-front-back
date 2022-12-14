@@ -40,7 +40,6 @@ router.post('/', async (req, res) => {
                 });
                 res.cookie("uid", item[0]['_id'], {
                     maxAge: 60 * 60 * 24 * 7 * 1000,
-                    httpOnly: true
                 });
                 res.json({
                     code: 200,
