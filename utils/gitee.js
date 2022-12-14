@@ -75,13 +75,17 @@ class github {
       }
       data.then(async (uncategorized) => {
         // console.log(uncategorized);
+        let [_, num] = await wrap(userController.findOne({
+          "_id": req.cookies['uid'],
+        }))
+        const number = await num;
         let [err, data] = await wrap(userController.update({
           gitee_id: git_id,
-          categories: 1,
+          categories: number[0]['categories']+1,
           gitee_token: access_token,
           gitee_refresh_token: refresh_token,
           "_id": req.cookies['uid']
-        }))
+        },'or', 4))
         if (err) {
           return {
             code: 500,

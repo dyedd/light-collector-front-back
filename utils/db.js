@@ -9,7 +9,7 @@ const insertDb = (data) => {
 const updateDb = (data, connect = 'or', num=1) => {
     let myArray = Object.keys(data);
     return {
-        "key": myArray.slice(0, num).join('=?,') + '=?',
+        "key": myArray.slice(0, num).join('=?, ') + '=?',
         "value": Object.values(data),
         "where": myArray.slice(num).join(` =? ${connect} `) + '=?',
     };

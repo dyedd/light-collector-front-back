@@ -20,7 +20,7 @@ const findOne = async (req) => {
     const custom = selectDb(req, 'or')
     // console.log(custom);
     const sql = `select * from user where ${custom['key']}`
-    console.log(sql);
+    // console.log(sql);
     const params = custom['params']
     // const sql = "select * from user where _id=? or username=? or gitee_id=?"
     // const params = [res['_id'], res['username'], res['gitee_id']]
@@ -33,7 +33,7 @@ const findAll = async () => {
     return data;
 }
 
-const update = async (req) => {
+const update = async (req, connect = 'or', num=1) => {
     // if(Object.hasOwnProperty.call(req, 'categories')){
     //     const selectSql = 'SELECT JSON_PRETTY(categories) as categories from user where _id=?';
     //     const selectData = await exec(selectSql, [req['_id']]);
@@ -57,16 +57,17 @@ const update = async (req) => {
         req['gitee_id'] = req['gitee_id'].toString()
     }
     // console.log(req);
-    const custom = updateDb(req)
+    // console.log(num,connect)
+    const custom = updateDb(req,connect,num)
     // console.log(custom);
     const sql = `update user set ${custom['key']} where ${custom['where']}`;
-    // console.log(sql);
+    console.log(sql);
     let params = custom['value'];
-    // console.log(params);
+    console.log(params);
     const data = await exec(sql, params);
     // console.log(sql);
     // console.log(data);
-    // console.log(daya,sql);
+    console.log(data,sql);
     return {
         row: data.affectedRows
     };
